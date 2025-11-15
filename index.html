@@ -4,159 +4,191 @@
 <meta charset="UTF-8">
 <title>Hello Kitty Carta</title>
 <style>
-    body {
-        background: #ffe6f2;
-        font-family: 'Comic Sans MS', cursive;
-        text-align: center;
-        margin: 0;
-        padding-top: 40px;
-    }
+body {
+    background: #ffe6f2;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    margin: 0;
+    padding-top: 40px;
+}
 
-    /* ENVELOPE */
-    .envelope {
-        width: 230px;
-        height: 160px;
-        background: #ffb6c1;
-        margin: 0 auto;
-        position: relative;
-        border-radius: 12px;
-        box-shadow: 0 0 15px #ff9ec9;
-        cursor: pointer;
-        transition: transform 0.6s ease-out, opacity 0.5s;
-    }
+/* ENVELOPE */
+.envelope {
+    width: 230px;
+    height: 160px;
+    background: #ffb6c1;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #ff9ec9;
+    cursor: pointer;
+    transition: transform 0.6s ease-out, opacity 0.5s;
+}
 
-    .envelope:before {
-        content: "💌";
-        font-size: 50px;
-        position: absolute;
-        top: 50px;
-        left: 90px;
-    }
+.envelope:before {
+    content: "💌";
+    font-size: 50px;
+    position: absolute;
+    top: 50px;
+    left: 90px;
+}
 
-    .btn-envelope {
-        width: 45px;
-        height: 45px;
-        background: #ff69b4;
-        border-radius: 50%;
-        border: 3px solid white;
-        position: absolute;
-        bottom: -20px;
-        left: 92px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 22px;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 0 8px #ff4b9f;
-        transition: 0.3s;
-    }
+.btn-envelope {
+    width: 45px;
+    height: 45px;
+    background: #ff69b4;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: absolute;
+    bottom: -20px;
+    left: 92px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 8px #ff4b9f;
+    transition: 0.3s;
+}
 
-    .btn-envelope:hover {
-        transform: scale(1.15);
-        background: #ff3c8f;
-    }
+.btn-envelope:hover {
+    transform: scale(1.15);
+    background: #ff3c8f;
+}
 
-    /* CARTA */
-    .carta {
-        width: 330px;
-        min-height: 380px;
-        background: white;
-        margin: 30px auto;
-        padding: 25px;
-        border-radius: 18px;
-        border: 4px solid #ff8aba;
-        box-shadow: 0 0 20px #ffb5d9;
-        transform: scale(0);
-        opacity: 0;
-        transition: transform 0.6s ease-out, opacity 0.6s;
-        position: relative;
-        overflow: hidden;
-    }
+/* BOTÃO ABRIR CARTA */
+.btn-abrir-carta {
+    width: 220px;
+    height: 130px;
+    margin: 30px auto;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffb7d5, #ff6fae);
+    border: 3px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 12px #ff4b9f;
+    display: none; /* começa escondido */
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
 
-    /* CARTA ABERTA */
-    .carta.aberta {
-        transform: scale(1.07);
-    }
+.btn-abrir-carta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff0f83;
+}
 
-    /* DECORAÇÕES DA CARTA */
-    .carta:before {
-        content: "✨🎀✨";
-        font-size: 25px;
-        position: absolute;
-        top: -18px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ffe3f4;
-        padding: 0 12px;
-        border-radius: 20px;
-        color: #ff5fa9;
-    }
+.btn-abrir-carta img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 15px;
+    opacity: 0.9;
+}
 
-    .carta:after {
-        content: "🌸";
-        font-size: 25px;
-        position: absolute;
-        bottom: -18px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ffe3f4;
-        padding: 0 12px;
-        border-radius: 20px;
-        color: #ff5fa9;
-    }
+.btn-abrir-carta span {
+    position: absolute;
+    bottom: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px #ff4b9f;
+}
 
-    /* CANTO FLORIDO */
-    .flor {
-        position: absolute;
-        font-size: 28px;
-        color: #ff60a8;
-        opacity: 0;
-        transform: scale(0.6);
-        transition: 0.6s ease;
-    }
+/* Brilhos animados no botão */
+.btn-abrir-carta::after {
+    content: "✨";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    animation: flutuar 2s infinite;
+}
 
-    .carta.aberta .flor {
-        opacity: 1;
-        transform: scale(1);
-    }
+@keyframes flutuar {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
 
-    .f1 { top: 10px; left: 10px; }
-    .f2 { top: 10px; right: 10px; }
-    .f3 { bottom: 10px; left: 10px; }
-    .f4 { bottom: 10px; right: 10px; }
+/* CARTA */
+.carta {
+    width: 350px;
+    min-height: 400px;
+    background: white;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 20px;
+    border: 4px solid #ff8aba;
+    box-shadow: 0 0 25px #ffb5d9;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.6s ease-out, opacity 0.6s;
+    position: relative;
+    overflow: hidden;
+}
 
-    /* TEXTO DA CARTA */
-    .conteudo {
-        opacity: 0;
-        transition: opacity 0.7s ease;
-    }
+/* CARTA ABERTA */
+.carta.aberta {
+    transform: scale(1.07);
+}
 
-    .carta.aberta .conteudo {
-        opacity: 1;
-    }
+/* DECORAÇÕES DA CARTA */
+.carta:before {
+    content: "✨🎀✨";
+    font-size: 25px;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe3f4;
+    padding: 0 12px;
+    border-radius: 20px;
+    color: #ff5fa9;
+}
 
-    /* BOTÃO SIMPLES “ABRIR CARTA” */
-    .btn-carta {
-        display: inline-block;
-        background: #ff69b4;
-        color: white;
-        padding: 12px 28px;
-        font-size: 18px;
-        border-radius: 25px;
-        border: 2px solid white;
-        box-shadow: 0 0 8px #ff4b9f;
-        cursor: pointer;
-        transition: 0.3s;
-        margin-top: 15px;
-    }
+.carta:after {
+    content: "🌸";
+    font-size: 25px;
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe3f4;
+    padding: 0 12px;
+    border-radius: 20px;
+    color: #ff5fa9;
+}
 
-    .btn-carta:hover {
-        transform: scale(1.05);
-        background: #ff3b9c;
-        box-shadow: 0 0 12px #ff0f83;
-    }
+/* Lacinhos nos cantos */
+.flor {
+    position: absolute;
+    font-size: 28px;
+    color: #ff60a8;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: 0.6s ease;
+}
 
+.carta.aberta .flor {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.f1 { top: 10px; left: 10px; }
+.f2 { top: 10px; right: 10px; }
+.f3 { bottom: 10px; left: 10px; }
+.f4 { bottom: 10px; right: 10px; }
+
+/* TEXTO DA CARTA */
+.conteudo {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.carta.aberta .conteudo {
+    opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -164,6 +196,13 @@
 <!-- ENVELOPE -->
 <div class="envelope" id="envelope">
     <div class="btn-envelope" onclick="abrirEnvelope()">❤</div>
+</div>
+
+<!-- BOTÃO ABRIR CARTA -->
+<div id="btnAbrirCartaBotao" class="btn-abrir-carta" onclick="abrirCarta()">
+    <!-- Substitua a URL abaixo pela sua foto no GitHub -->
+    <img src="https://via.placeholder.com/180x100.png?text=Sua+Foto+Aqui" alt="Foto botão">
+    <span>Abrir Carta 💖</span>
 </div>
 
 <!-- CARTA -->
@@ -176,34 +215,36 @@
     <div class="conteudo">
         <h2 style="color:#ff4b9f; margin-bottom:10px;">Carta Especial 💖</h2>
         <p style="color:#333; font-size:17px;">
-            faço essa carta com muito amor e carinho, pq te amo de montão! e pra mim vc é a pessoa mais importante desse mundo, agradeço por todos esses momentos juntinhos, espero recordar mais memorias com vc minha gatinha linda🎀💗
+            faço essa carta com muito amor e carinho, pq te amo de montão! e pra mim vc é a pessoa mais importante desse mundo, agradeço por todos esses momentos juntinhos, cada milesimo,segundo,minutos, é muito especial pra mim,espero recordar mais memorias com vc minha gatinha linda, obrigado por me aturar (por mais que eu tenha que aturar vc tbm kk) vc é incrivel te amoooo muito🎀💗
         </p>
     </div>
-
-    <!-- BOTÃO SIMPLES -->
-    <div class="btn-carta" onclick="abrirCarta()">Abrir Carta 💖</div>
 </div>
 
 <script>
 function abrirEnvelope() {
     const envelope = document.getElementById("envelope");
-    const carta = document.getElementById("carta");
+    const btn = document.getElementById("btnAbrirCartaBotao");
 
     envelope.style.transform = "translateY(-200px) scale(0.7)";
     envelope.style.opacity = "0";
 
     setTimeout(() => {
-        carta.style.transform = "scale(1)";
-        carta.style.opacity = "1";
+        envelope.style.display = "none";
+        btn.style.display = "flex"; // mostra botão centralizado
     }, 500);
 }
 
 function abrirCarta() {
     const carta = document.getElementById("carta");
-    carta.classList.add("aberta");  // ativa animação da carta e mostra conteúdo
+    const btn = document.getElementById("btnAbrirCartaBotao");
+
+    carta.classList.add("aberta");
+    carta.style.transform = "scale(1)";
+    carta.style.opacity = "1";
+
+    btn.style.display = "none"; // remove botão após abrir carta
 }
 </script>
 
 </body>
 </html>
-
