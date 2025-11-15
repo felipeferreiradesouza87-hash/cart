@@ -57,7 +57,7 @@ body {
     background: #ff3c8f;
 }
 
-/* BOTÃO ABRIR CARTA */
+/* BOTÃO ABRIR CARTA PERSONALIZADO */
 .btn-abrir-carta {
     width: 220px;
     height: 130px;
@@ -70,14 +70,36 @@ body {
     display: none; /* começa escondido */
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
     position: relative;
     overflow: hidden;
+    animation: pulsar 2s infinite;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .btn-abrir-carta:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #ff0f83;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ff0f83;
+}
+
+/* Pulsar do botão */
+@keyframes pulsar {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* Brilhos animados no botão */
+.btn-abrir-carta::after {
+    content: "✨";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    animation: flutuar 2s infinite;
+}
+
+@keyframes flutuar {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .btn-abrir-carta img {
@@ -96,41 +118,28 @@ body {
     text-shadow: 1px 1px 4px #ff4b9f;
 }
 
-/* Brilhos animados no botão */
-.btn-abrir-carta::after {
-    content: "✨";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    animation: flutuar 2s infinite;
-}
-
-@keyframes flutuar {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
 /* CARTA */
 .carta {
     width: 350px;
     min-height: 400px;
-    background: white;
+    background: #fff0f5;
     margin: 30px auto;
     padding: 25px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: 4px solid #ff8aba;
     box-shadow: 0 0 25px #ffb5d9;
     transform: scale(0);
     opacity: 0;
-    transition: transform 0.6s ease-out, opacity 0.6s;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
     position: relative;
     overflow: hidden;
+    background-image: radial-gradient(circle at top left, #ffe6f2, #fff0f5);
 }
 
-/* CARTA ABERTA */
+/* Carta aberta */
 .carta.aberta {
-    transform: scale(1.07);
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 /* DECORAÇÕES DA CARTA */
@@ -175,15 +184,15 @@ body {
     transform: scale(1);
 }
 
-.f1 { top: 10px; left: 10px; }
-.f2 { top: 10px; right: 10px; }
-.f3 { bottom: 10px; left: 10px; }
-.f4 { bottom: 10px; right: 10px; }
+.carta.aberta .f1 { transition-delay: 0.2s; }
+.carta.aberta .f2 { transition-delay: 0.4s; }
+.carta.aberta .f3 { transition-delay: 0.6s; }
+.carta.aberta .f4 { transition-delay: 0.8s; }
 
 /* TEXTO DA CARTA */
 .conteudo {
     opacity: 0;
-    transition: opacity 0.7s ease;
+    transition: opacity 0.7s ease 1s; /* texto aparece depois das flores */
 }
 
 .carta.aberta .conteudo {
@@ -215,7 +224,11 @@ body {
     <div class="conteudo">
         <h2 style="color:#ff4b9f; margin-bottom:10px;">Carta Especial 💖</h2>
         <p style="color:#333; font-size:17px;">
-            faço essa carta com muito amor e carinho, pq te amo de montão! e pra mim vc é a pessoa mais importante desse mundo, agradeço por todos esses momentos juntinhos, cada milesimo,segundo,minutos, é muito especial pra mim,espero recordar mais memorias com vc minha gatinha linda, obrigado por me aturar (por mais que eu tenha que aturar vc tbm kk) vc é incrivel te amoooo muito🎀💗
+            Faço essa carta com muito amor e carinho, porque te amo de montão!  
+            Para mim você é a pessoa mais importante desse mundo, agradeço por todos os momentos juntinhos.  
+            Cada milésimo, segundo e minuto é muito especial pra mim. Espero recordar mais memórias com você, minha gatinha linda.  
+            Obrigado por me aturar (por mais que eu tenha que aturar você também kk).  
+            Você é incrível, te amo muito 🎀💗
         </p>
     </div>
 </div>
@@ -238,13 +251,13 @@ function abrirCarta() {
     const carta = document.getElementById("carta");
     const btn = document.getElementById("btnAbrirCartaBotao");
 
+    btn.style.display = "none"; // remove botão
     carta.classList.add("aberta");
-    carta.style.transform = "scale(1)";
-    carta.style.opacity = "1";
-
-    btn.style.display = "none"; // remove botão após abrir carta
 }
 </script>
 
 </body>
 </html>
+
+
+
